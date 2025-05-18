@@ -1,0 +1,100 @@
+@mixin medium-text() {
+  @include fluid-type(280px, 375px, 18px, 22.4px);
+
+  // font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+@mixin large-text() {
+  @include fluid-type(280px, 375px, 30px, 38px);
+
+  // font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+@mixin text--h1 {
+  font-size: 3.75rem;
+  line-height: 100%;
+  letter-spacing: 0.075rem;
+
+  @include mobile-l {
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0.96px;
+  }
+}
+
+@mixin text--h2 {
+  font-size: 3.125rem;
+  line-height: 110%;
+  letter-spacing: 0.0625rem;
+}
+
+@mixin text--h3 {
+  font-size: 2.5rem;
+  line-height: 110%;
+  letter-spacing: 0.05rem;
+}
+
+@mixin text--h4 {
+  font-size: 2rem;
+  line-height: 110%;
+}
+
+@mixin text--h5 {
+  font-size: 1.5rem;
+  line-height: 110%;
+}
+
+@mixin text--h6 {
+  line-height: 110%;
+  text-transform: uppercase;
+}
+
+@mixin text--caption-s {
+  font-size: 0.75rem;
+  line-height: 130%;
+}
+
+@mixin text--caption-m {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 130%;
+}
+
+@mixin text--caption-l {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 130%;
+}
+
+@mixin text--s {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 160%;
+}
+
+@mixin text--l {
+  font-size: 1.25rem;
+  line-height: 160%;
+}
+
+@mixin text--lead-s {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 160%;
+}
+
+@mixin text--lead-m {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 160%;
+}
+
+@mixin text--lead-l {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 160%;
+}

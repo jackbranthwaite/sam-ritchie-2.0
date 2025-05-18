@@ -1,0 +1,43 @@
+// Fallback font
+body {
+  font-size: 1rem;
+  font-family: $body-font-family;
+  font-weight: 600;
+  line-height: 180%;
+}
+
+a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $heading-font-family;
+  text-transform: uppercase;
+}
+
+h4,
+h5,
+h6 {
+  font-family: $default-font-family;
+}
+
+p {
+  margin-top: 0;
+}

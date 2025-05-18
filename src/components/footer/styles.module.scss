@@ -1,0 +1,17 @@
+@import '@/styles/config';
+
+.footer {
+  height: 75px;
+  width: 100vw;
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,0 +1,32 @@
+@mixin pill-layout {
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: solid 1px transparent;
+  padding: 4px 10px;
+  border-radius: 50px;
+  height: 32px;
+
+  @include button-defaults;
+}
+
+@mixin pill-style {
+  background: rgba($white, 0.1);
+  border-color: rgba($white, 0.13);
+}
+
+@mixin pill-hover-style {
+  background: rgba($white, 0.15);
+}
+
+@mixin pill-focus-style {
+  background: rgba($white, 0.15);
+  border-color: $pink;
+}
+
+@mixin pill-applied-style {
+  background: rgba($pink, 0.7);
+  border-color: $pink;
+}

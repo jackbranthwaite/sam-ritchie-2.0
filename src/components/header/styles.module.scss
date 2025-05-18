@@ -1,0 +1,39 @@
+@import '@/styles/config';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 10;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  max-width: 1700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  a {
+    font-family: Sansita;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 900;
+  }
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  a {
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+  }
+}

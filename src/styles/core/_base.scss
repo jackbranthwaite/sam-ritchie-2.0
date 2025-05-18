@@ -1,0 +1,60 @@
+body {
+  background-color: $offwhite;
+  height: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  --ticker-tape-offset: 0px;
+
+  &.fix {
+    height: 100vh;
+    overflow-y: hidden;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+#app {
+  overflow: hidden;
+}
+
+#__next {
+  height: 100%;
+}
+
+:root {
+  --colour-offwhite: #{$offwhite};
+  --colour-green: #{$green};
+  --colour-brown: #{brown};
+  --colour-black: #{$black};
+  --colour-white: #{$white};
+
+  // Extra colours - just for dietary pills
+  --font-family: #{$nunito};
+  --navigation-bar-height: #{$navigation-height};
+  --navigation-bar-offset: var(--navigation-bar-height);
+  --default-grid-gutter: #{$grid-gutter};
+  --dock-offset: 0px;
+
+  @include mobile-l {
+    --dock-offset: 80px;
+    --navigation-bar-height: #{$navigation-height-mobile};
+  }
+}

@@ -1,0 +1,27 @@
+@import '@/styles/config';
+
+.doubleImageWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  @include tablet {
+    flex-direction: column;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    gap: 1rem;
+  }
+}
+
+.rightImage,
+.leftImage {
+  flex: 1 0 47.5%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}

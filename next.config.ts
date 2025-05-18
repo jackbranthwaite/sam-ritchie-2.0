@@ -1,7 +1,37 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
+  webpack(config, options) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
 
-const nextConfig: NextConfig = {
-  /* config options here */
+    return config;
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.datocms-assets.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.vimeo.com',
+        port: '',
+      },
+    ],
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

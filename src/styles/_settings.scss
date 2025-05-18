@@ -1,0 +1,36 @@
+// 01. Media Query Breakpoints
+$mobile-portrait-max: 478px;
+$mobile-landscape-max: 767px;
+$tablet-max: 991px;
+$large-min: 1280px;
+$xlarge-min: 1440px;
+$xxlarge-min: 1920px;
+$listings-midpoint-min: 1560px;
+
+// 02. Colours
+$white: #fff;
+$black: #000;
+$offwhite: #ddd1c2;
+$brown: #534741;
+$green: #c2ddd1;
+
+// 03. Type
+$nunito: Nunito, helvetica, arial, sans-serif;
+$body-font-family: $nunito;
+$default-font-family: $body-font-family;
+$font-family: $body-font-family;
+$heading-font-family: Sansita, helvetica, arial, sans-serif;
+
+// 04. Grid
+$grid-columns: 12;
+$grid-gutter: 30px;
+$container-width: 1440px;
+$container-gutter-mobile: 25px;
+$container-gutter-tablet: 50px;
+$container-gutter-desktop: 70px;
+$default-card-height: 529px;
+$border-radius: 12px;
+$default-box-shadow: 0 3px 7px 0 rgb(0 0 0 / 25%);
+$navigation-height: 115px;
+$navigation-height-mobile: 65px;
+$beizer-navigation: cubic-bezier(0.69, 0.01, 0, 1);

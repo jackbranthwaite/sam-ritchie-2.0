@@ -3,6 +3,8 @@ export type SimpleCategoryPage = {
   title: string;
   slug: string;
   stillsTitleImage?: {
+    image: string;
+    alt: string;
     asset?: {
       _ref: string;
       _type: 'reference';
@@ -15,6 +17,8 @@ export type SimpleCategoryPage = {
     _type: 'image';
   };
   videosTitleImage?: {
+    image: string;
+    alt: string;
     asset?: {
       _ref: string;
       _type: 'reference';
@@ -37,6 +41,8 @@ export type StillsPage = {
   title?: string;
   slug?: Slug;
   stillsTitleImage?: {
+    image: string;
+    alt: string;
     asset?: {
       _ref: string;
       _type: 'reference';
@@ -49,6 +55,8 @@ export type StillsPage = {
     _type: 'image';
   };
   stillsGallery?: Array<{
+    image: string;
+    alt: string;
     asset?: {
       _ref: string;
       _type: 'reference';
@@ -103,6 +111,8 @@ export type VideoPage = {
   title?: string;
   slug?: Slug;
   videosTitleImage?: {
+    image: string;
+    alt: string;
     asset?: {
       _ref: string;
       _type: 'reference';
@@ -212,6 +222,8 @@ export type SingleImageBlock = {
   _type: 'singleImageBlock';
   image?: {
     asset?: {
+      url: string;
+      alt: string;
       _ref: string;
       _type: 'reference';
       _weak?: boolean;
@@ -230,6 +242,8 @@ export type DualImageBlock = {
   _type: 'dualImageBlock';
   leftImage?: {
     asset?: {
+      url: string;
+      alt: string;
       _ref: string;
       _type: 'reference';
       _weak?: boolean;
@@ -242,6 +256,8 @@ export type DualImageBlock = {
   };
   rightImage?: {
     asset?: {
+      url: string;
+      alt: string;
       _ref: string;
       _type: 'reference';
       _weak?: boolean;
@@ -276,6 +292,8 @@ export type CategoryPage = {
     _type: 'image';
   };
   stillsGallery?: Array<{
+    image: string;
+    alt: string;
     asset?: {
       _ref: string;
       _type: 'reference';

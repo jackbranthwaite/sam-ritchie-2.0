@@ -5,9 +5,9 @@ import s from './styles.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Wrapper } from '../wrapper';
-import { CategoryPage } from '@/sanity/sanity-types';
+import { SimpleCategoryPage } from '@/sanity/sanity-types';
 
-export const TitlePage = ({ data }: { data: CategoryPage }) => {
+export const TitlePage = ({ data }: { data: SimpleCategoryPage }) => {
   const slug = usePathname();
   return (
     <Wrapper>
@@ -17,7 +17,7 @@ export const TitlePage = ({ data }: { data: CategoryPage }) => {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`${data.stillsTitleImage?.image}`}
-              alt={`${data.stillsTitleImage.alt}`}
+              alt={`${data.stillsTitleImage?.alt}`}
             />
             <p className={s.title}>Stills</p>
           </Link>
@@ -27,7 +27,7 @@ export const TitlePage = ({ data }: { data: CategoryPage }) => {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`${data.videosTitleImage?.image}`}
-              alt={`${data.videosTitleImage.alt}`}
+              alt={`${data.videosTitleImage?.alt}`}
             />
             <p className={s.title}>Video</p>
           </div>

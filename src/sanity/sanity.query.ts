@@ -84,3 +84,71 @@ export async function getSingleStills(
     { slug, options }
   );
 }
+
+export async function getSingleVideos(
+  slug: string,
+  options: { next: { revalidate: number } }
+) {
+  return client.fetch(
+    groq`
+        *[_type == "categoryPage" && slug.current == $slug][0] {
+          stillsTitleImage {alt, "image": asset->url},
+          stillsGallery[] {alt, "image": asset->url},
+          title,
+          content[] {
+            _type == "block" => {
+              ...
+            },
+            _type == "flexibleImageContainer" => {
+              _type,
+              title,
+              imageBlocks[] {
+                _type,
+                _type == "dualImageBlock" => {
+                  leftImage {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  rightImage {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  caption
+                },
+                _type == "singleImageBlock" => {
+                  image {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  caption,
+                  fullWidth
+                }
+              }
+            }
+          }
+        }
+`,
+    { slug, options }
+  );
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './styles.module.scss';
-import Image from 'next/image';
 import { DualImageBlock } from '@/sanity/sanity-types';
 
 export const DoubleImage = ({ data }: { data: DualImageBlock }) => {

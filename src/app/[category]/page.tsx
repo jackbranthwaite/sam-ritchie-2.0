@@ -1,5 +1,5 @@
 import { TitlePage } from '@/components/title-page';
-import { CategoryPage } from '@/sanity/sanity-types';
+import { SimpleCategoryPage } from '@/sanity/sanity-types';
 import { getSingleCategory } from '@/sanity/sanity.query';
 
 // Dynamic metadata for SEO
@@ -26,7 +26,7 @@ export default async function Category({
   params: Promise<{ category: string }>;
 }) {
   const slug = (await params).category;
-  const post: CategoryPage = await getSingleCategory(slug, options);
+  const post: SimpleCategoryPage = await getSingleCategory(slug, options);
   return (
     <div>
       <TitlePage data={post} />

@@ -9,7 +9,8 @@ const nextConfig = {
       },
     },
   },
-  webpack(config, options) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  webpack(config: any) {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,

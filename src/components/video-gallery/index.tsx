@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
 import s from './styles.module.scss';
-// import { VideoPlayer } from 'react-datocms/video-player';
 import { Wrapper } from '../wrapper';
+import { VideoPage } from '@/sanity/sanity-types';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 
-export const VideoGallery = ({ data }: { data: unknown }) => {
+export const VideoGallery = ({ data }: { data: VideoPage }) => {
   // const [selectedVideo, setSelectedVideo] = useState<UploadVideoField | null>(
   //   null
   // );
@@ -19,12 +19,17 @@ export const VideoGallery = ({ data }: { data: unknown }) => {
   //     setSelectedVideo(data.videos[0].video?.video);
   //   }
   // }, []);
-  console.log(data);
+  console.log(data as VideoPage);
   return (
     <div className={s.videoGalleryWrapper}>
       <Wrapper>
-        {' '}
-        {/* <VideoPlayer data={data?.videos[0].vimeoLink} /> */}
+        {data.videoGallery?.map((item) => {
+          return (
+            <video key={item._key} height={500} width={1000}>
+              <source src={item.vimeo?.pictures.sizes[0].link}></source>
+            </video>
+          );
+        })}
       </Wrapper>
     </div>
   );

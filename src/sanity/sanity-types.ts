@@ -484,9 +484,25 @@ export type Slug = {
 
 export type Vimeo = {
   _type: 'vimeo';
-  vimeoData?: {
-    id?: string;
+
+  id: string;
+  pictures: {
+    active: boolean;
+    base_link: string;
+    default_picture: boolean;
+    resource_key: string;
+    sizes: {
+      _key: string;
+      height: number;
+      link: string;
+      link_with_play_button: string;
+      width: number;
+    }[];
+
+    type: string;
+    uri: string;
   };
+  play: { status: string };
 };
 
 export type AllSanitySchemaTypes =

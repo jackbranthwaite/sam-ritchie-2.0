@@ -2,12 +2,6 @@ import { TitlePage } from '@/components/title-page';
 import { CategoryPage } from '@/sanity/sanity-types';
 import { getSingleCategory } from '@/sanity/sanity.query';
 
-type Props = {
-  params: {
-    category: string;
-  };
-};
-
 // Dynamic metadata for SEO
 // export async function generateMetadata({ params }: Props): Promise<Metadata> {
 //   const slug = params.project;
@@ -26,8 +20,12 @@ type Props = {
 // }
 const options = { next: { revalidate: 30 } };
 
-export default async function Category({ params }: Props) {
-  const slug = params.category;
+export default async function Category({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const slug = (await params).category;
   const post: CategoryPage = await getSingleCategory(slug, options);
   return (
     <div>

@@ -19,13 +19,13 @@ export const Gallery = ({
     <div className={s.galleryWrapper}>
       <Swiper loop ref={swiperRef}>
         {images &&
-          images.map((image: { alt: string; image: string }, i) => {
+          images.map((image, i) => {
             return (
               <SwiperSlide key={i}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`${image?.image}`}
-                  alt={`${image.alt}`}
+                  alt={`${image?.alt}`}
                   className={s.image}
                 />
               </SwiperSlide>

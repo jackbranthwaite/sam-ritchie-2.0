@@ -15,14 +15,19 @@ export const Stills = ({ data }: { data: StillsPage }) => {
       <Gallery images={data.stillsGallery} />
       <Wrapper>
         <PageHeader title={data.title || ''} />
-        {/* {data.stillsGallery.map((item, i) => {
-          if (item.__typename === 'DoubleImageRecord') {
-            return <DoubleImage data={item} key={i} />;
+        {data.content?.map((item) => {
+          if (item._type === 'flexibleImageContainer') {
+            return item.imageBlocks?.map((imageBlock, j) => {
+              if (imageBlock._type === 'dualImageBlock') {
+                return <DoubleImage data={imageBlock} key={j} />;
+              } else if (imageBlock._type === 'singleImageBlock') {
+                return <FullWidthImage data={imageBlock} key={j} />;
+              } else {
+                return <></>;
+              }
+            });
           }
-          if (item.__typename === 'FullWidthImageRecord') {
-            return <FullWidthImage data={item} key={i} />;
-          }
-        })} */}
+        })}
       </Wrapper>
     </div>
   );

@@ -8,7 +8,6 @@ import { Wrapper } from '../wrapper';
 import { CategoryPage } from '@/sanity/sanity-types';
 
 export const TitlePage = ({ data }: { data: CategoryPage }) => {
-  console.log(data);
   const slug = usePathname();
   return (
     <Wrapper>

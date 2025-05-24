@@ -4,10 +4,13 @@ import React, { useEffect, useState } from 'react';
 import s from './styles.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Menu } from '@/sanity/sanity-types';
 
-export const Header = () => {
+export const Header = ({ menu }: { menu: Menu }) => {
   const pathname = usePathname();
   const [colour, setColour] = useState('#fff');
+
+  console.log(menu);
 
   useEffect(() => {
     if (pathname === '/') {
@@ -26,22 +29,19 @@ export const Header = () => {
           </Link>
         </div>
         <div className={s.menu}>
-          <Link href={'/overview'} style={{ color: colour }}>
-            <div className={s.menuItem}>Overview</div>
-          </Link>
-          {/* {menu.map((page, i) => {
+          {menu.menu?.map((page, i) => {
             return (
-              <Link href={`/${page.slug}`} style={{ color: colour }} key={i}>
-                <div className={s.menuItem}>{page.title}</div>
+              <Link
+                href={`/${page.reference?.slug.current}`}
+                style={{ color: colour }}
+                key={i}
+              >
+                <div className={s.menuItem}>
+                  {page.title || page.reference?.title}
+                </div>
               </Link>
             );
-          })} */}
-          <Link href={'/contact'} style={{ color: colour }}>
-            <div className={s.menuItem}>Contact</div>
-          </Link>
-          <Link href={'/about'} style={{ color: colour }}>
-            <div className={s.menuItem}>About</div>
-          </Link>
+          })}
         </div>
       </div>
     </header>

@@ -122,3 +122,24 @@ export async function getSingleVideos(
     })),
   };
 }
+
+export async function getMenu(options: { next: { revalidate: number } }) {
+  const menu = await client.fetch(
+    groq`*[_type == "menu"]{
+      menu[] {
+        _id,
+        title,
+        order,
+        reference-> {
+          _type,
+          title,
+          slug
+        }
+      }
+    }
+  `,
+    { options }
+  );
+
+  return menu;
+}

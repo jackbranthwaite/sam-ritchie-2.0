@@ -127,7 +127,7 @@ export type VideoPage = {
   videoGallery?: Array<
     {
       _key: string;
-    } & Video
+    } & VimeoEmbed
   >;
 };
 
@@ -201,9 +201,15 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Video = {
-  _type: 'video';
-  vimeo?: Vimeo;
+export type VimeoEmbed = {
+  _type: 'vimeoEmbed';
+  url?: string;
+  embedCode: string;
+  isValid: boolean;
+  playerUrl: string;
+  responsiveEmbed: string;
+  thumbnail: string;
+  videoId: number;
 };
 
 export type FlexibleImageContainer = {
@@ -222,8 +228,6 @@ export type SingleImageBlock = {
   _type: 'singleImageBlock';
   image?: {
     asset?: {
-      url: string;
-      alt: string;
       _ref: string;
       _type: 'reference';
       _weak?: boolean;
@@ -242,8 +246,6 @@ export type DualImageBlock = {
   _type: 'dualImageBlock';
   leftImage?: {
     asset?: {
-      url: string;
-      alt: string;
       _ref: string;
       _type: 'reference';
       _weak?: boolean;
@@ -256,8 +258,6 @@ export type DualImageBlock = {
   };
   rightImage?: {
     asset?: {
-      url: string;
-      alt: string;
       _ref: string;
       _type: 'reference';
       _weak?: boolean;
@@ -292,8 +292,6 @@ export type CategoryPage = {
     _type: 'image';
   };
   stillsGallery?: Array<{
-    image: string;
-    alt: string;
     asset?: {
       _ref: string;
       _type: 'reference';
@@ -352,7 +350,7 @@ export type CategoryPage = {
   videoGallery?: Array<
     {
       _key: string;
-    } & Video
+    } & VimeoEmbed
   >;
 };
 
@@ -482,36 +480,13 @@ export type Slug = {
   source?: string;
 };
 
-export type Vimeo = {
-  _type: 'vimeo';
-
-  id: string;
-  pictures: {
-    active: boolean;
-    base_link: string;
-    default_picture: boolean;
-    resource_key: string;
-    sizes: {
-      _key: string;
-      height: number;
-      link: string;
-      link_with_play_button: string;
-      width: number;
-    }[];
-
-    type: string;
-    uri: string;
-  };
-  play: { status: string };
-};
-
 export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
-  | Video
+  | VimeoEmbed
   | FlexibleImageContainer
   | SingleImageBlock
   | DualImageBlock
@@ -523,6 +498,5 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | Slug
-  | Vimeo;
+  | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;

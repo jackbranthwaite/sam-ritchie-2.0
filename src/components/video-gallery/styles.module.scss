@@ -3,3 +3,29 @@
 .videoGalleryWrapper {
   margin-top: 3.5rem;
 }
+
+.selectedVideoWrapper {
+  margin-bottom: 2rem;
+}
+.swiperWrapper {
+  position: relative;
+}
+.leftGradient {
+  background-image: linear-gradient(to right, #ddd1c2, transparent);
+  position: absolute;
+  height: 100%;
+  width: 150px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.rightGradient {
+  background-image: linear-gradient(to right, transparent, #ddd1c2);
+  position: absolute;
+  height: 100%;
+  width: 150px;
+  z-index: 10;
+  right: 0;
+  top: 0;
+  pointer-events: none;
+}

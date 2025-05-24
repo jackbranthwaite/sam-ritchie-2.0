@@ -1,5 +1,6 @@
 import { groq } from 'next-sanity';
 import { client } from './client';
+import { processVimeoUrl } from '@/utils/vimeoHelpers';
 
 export async function getSingleCategory(
   slug: string,
@@ -89,7 +90,7 @@ export async function getSingleVideos(
   slug: string,
   options: { next: { revalidate: number } }
 ) {
-  return client.fetch(
+  const singleVideo = await client.fetch(
     groq`*[_type == "categoryPage" && slug.current == $slug][0]{
       _id,
       _rev,
@@ -103,19 +104,21 @@ export async function getSingleVideos(
         },
         alt
       },
-      videoGallery[]{
-        _type,
-        _key,
-        vimeo{
-        custom_url,
-          id,
-          metadata,
-          pictures,
-          play
-        }
-      }
+      videoGallery[]
     }
   `,
     { slug, options }
   );
+
+  return {
+    ...singleVideo,
+    videoGallery: singleVideo.videoGallery.map((video: { url: string }) => ({
+      ...video,
+      ...processVimeoUrl(video.url, {
+        autoplay: false,
+        muted: true,
+        loop: true,
+      }),
+    })),
+  };
 }

@@ -8,7 +8,6 @@ import { FullWidthImage } from '../full-width-image';
 import { StillsPage } from '@/sanity/sanity-types';
 
 export const Stills = ({ data }: { data: StillsPage }) => {
-  console.log(data);
   if (!data?.stillsGallery) return <></>;
   return (
     <div className={s.stillsPageWrapper}>

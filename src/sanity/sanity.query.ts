@@ -143,3 +143,19 @@ export async function getMenu(options: { next: { revalidate: number } }) {
 
   return menu;
 }
+
+export async function getGeneric(
+  slug: string,
+  options: { next: { revalidate: number } }
+) {
+  const generic = await client.fetch(
+    groq`*[_type == "page" && slug.current == "${slug}"] {
+      title,
+      slug,
+      image,
+      body[]
+    }`,
+    { options }
+  );
+  return generic;
+}

@@ -28,6 +28,8 @@ export const VideoGallery = ({ data }: { data: VideoPage }) => {
           <div
             dangerouslySetInnerHTML={{ __html: selectedVideo.responsiveEmbed }}
           ></div>
+          <h3 className={s.title}>{selectedVideo.title}</h3>
+          <p className={s.description}>{selectedVideo.description}</p>
         </div>
         <div className={s.swiperWrapper}>
           <div className={s.leftGradient}></div>

@@ -23,9 +23,10 @@
   align-items: flex-start;
 
   img {
-    transition: ease-in-out all 0.2s;
+    transition: ease-in-out all 0.3s;
     &:hover {
-      box-shadow: $default-box-shadow;
+      box-shadow: rgba(62, 63, 67, 0.45) -18.3928px -9.21685px 37px -17px;
+      transform: translateY(-5px);
     }
   }
 }

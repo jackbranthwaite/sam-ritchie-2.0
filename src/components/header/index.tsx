@@ -52,8 +52,11 @@ export const Header = ({ menu }: { menu: Menu }) => {
     <header className={s.header}>
       <div className={s.headerWrapper}>
         <div className={s.logo}>
-          <Link href={'/'} style={{ color: colour }}>
+          <Link href={'/'} style={{ color: colour }} className={s.desktopLogo}>
             Sam Ritchie - Photographer and Videographer
+          </Link>
+          <Link href={'/'} style={{ color: colour }} className={s.mobileLogo}>
+            Sam Ritchie
           </Link>
         </div>
         <div className={s.menuDesktop}>

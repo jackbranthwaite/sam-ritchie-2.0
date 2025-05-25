@@ -29,3 +29,12 @@
   top: 0;
   pointer-events: none;
 }
+
+.title {
+  text-transform: capitalize;
+  padding-top: 1rem;
+}
+
+.description {
+  white-space: pre-wrap;
+}

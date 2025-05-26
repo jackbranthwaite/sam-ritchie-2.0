@@ -1,7 +1,7 @@
 body {
   background-color: $offwhite;
   height: 100%;
-  min-height: 100vh;
+  min-height: calc(100dvh - 75px);
   overflow-x: hidden;
 
   --ticker-tape-offset: 0px;

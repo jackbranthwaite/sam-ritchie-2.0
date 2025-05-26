@@ -28,7 +28,7 @@ export async function getSingleStills(
           stillsTitleImage {alt, "image": asset->url},
           stillsGallery[] {alt, "image": asset->url},
           title,
-          content[] {
+          body[] {
             _type == "block" => {
               ...
             },
@@ -152,8 +152,59 @@ export async function getGeneric(
     groq`*[_type == "page" && slug.current == "${slug}"] {
       title,
       slug,
-      image,
-      body[]
+      content[] {
+      
+            _type == "block" => {
+              ...
+            },
+            _type == "flexibleImageContainer" => {
+              _type,
+              title,
+              imageBlocks[] {
+                _type,
+                _type == "dualImageBlock" => {
+                  leftImage {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  rightImage {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  caption
+                },
+                _type == "singleImageBlock" => {
+                  image {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  caption,
+                  fullWidth
+                }
+              }
+            }
+      }
     }`,
     { options }
   );

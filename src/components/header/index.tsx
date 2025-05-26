@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import s from './styles.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu } from '@/sanity/sanity-types';
 import gsap from 'gsap';
+import { useWindowSize } from '@/utils/useWindowSize';
 
 export const Header = ({ menu }: { menu: Menu }) => {
   const pathname = usePathname();
@@ -17,6 +18,7 @@ export const Header = ({ menu }: { menu: Menu }) => {
   const lineThree = useRef<HTMLSpanElement | null>(null);
   const menuButton = useRef<HTMLDivElement | null>(null);
   const tl = useRef<GSAPTimeline | null>(null);
+  const { width } = useWindowSize();
 
   useEffect(() => {
     if (pathname === '/') {
@@ -74,30 +76,35 @@ export const Header = ({ menu }: { menu: Menu }) => {
             );
           })}
         </div>
-        <div
-          className={s.menuButton}
-          onClick={() => setMenuOpen(!menuOpen)}
-          ref={menuButton}
-        >
-          <span style={{ backgroundColor: colour }} ref={lineOne}></span>
-          <span style={{ backgroundColor: colour }} ref={lineTwo}></span>
-          <span style={{ backgroundColor: colour }} ref={lineThree}></span>
-        </div>
-        <div className={s.menuMobile} ref={mobileMenuRef}>
-          {menu.menu?.map((page, i) => {
-            return (
-              <Link
-                href={`/${page.reference?.slug.current}`}
-                style={{ color: colour }}
-                key={i}
-              >
-                <div className={s.menuItem}>
-                  {page.title || page.reference?.title}
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+        {width && width < 1100 && (
+          <>
+            {' '}
+            <div
+              className={s.menuButton}
+              onClick={() => setMenuOpen(!menuOpen)}
+              ref={menuButton}
+            >
+              <span style={{ backgroundColor: colour }} ref={lineOne}></span>
+              <span style={{ backgroundColor: colour }} ref={lineTwo}></span>
+              <span style={{ backgroundColor: colour }} ref={lineThree}></span>
+            </div>
+            <div className={s.menuMobile} ref={mobileMenuRef}>
+              {menu.menu?.map((page, i) => {
+                return (
+                  <Link
+                    href={`/${page.reference?.slug.current}`}
+                    style={{ color: colour }}
+                    key={i}
+                  >
+                    <div className={s.menuItem}>
+                      {page.title || page.reference?.title}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
     </header>
   );

@@ -5,4 +5,9 @@
   max-width: 1700px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 4rem;
+
+  @include mobile-l {
+    padding: 1.5rem 1.5rem;
+  }
 }

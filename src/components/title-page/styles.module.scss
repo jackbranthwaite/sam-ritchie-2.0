@@ -6,10 +6,11 @@
   align-items: center;
   flex-wrap: nowrap;
   gap: 2rem;
-  height: 100vh;
+  min-height: calc(100vh - 75px);
 
   @include tablet {
     flex-direction: column;
+    margin-top: 4rem;
   }
 }
 

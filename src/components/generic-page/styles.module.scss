@@ -1,1 +1,5 @@
 @import '@/styles/config';
+
+.genericPageWrapper {
+  min-height: calc(100dvh - 75px);
+}

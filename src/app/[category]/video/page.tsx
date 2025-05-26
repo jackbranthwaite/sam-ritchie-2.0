@@ -13,7 +13,7 @@ export default async function VideoPage({
   const slug = (await params).category;
   const videos: IVideoPage = await getSingleVideos(slug, options);
   return (
-    <div style={{ minHeight: '100dvh' }}>
+    <div>
       <VideoGallery data={videos} />
     </div>
   );

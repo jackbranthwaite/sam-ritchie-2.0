@@ -45,6 +45,7 @@ export const VideoGallery = ({ data }: { data: VideoPage }) => {
               );
             })}
           </Swiper>
+
           <div className={s.rightGradient}></div>
         </div>
       </Wrapper>

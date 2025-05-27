@@ -28,7 +28,8 @@ export async function getSingleStills(
           stillsTitleImage {alt, "image": asset->url},
           stillsGallery[] {alt, "image": asset->url},
           title,
-          body[] {
+          content[] {
+      
             _type == "block" => {
               ...
             },
@@ -79,7 +80,7 @@ export async function getSingleStills(
                 }
               }
             }
-          }
+      }
         }
 `,
     { slug, options }

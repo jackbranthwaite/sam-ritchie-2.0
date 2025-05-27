@@ -16,11 +16,13 @@ export const metadata: Metadata = {
 const sansita = Sansita({
   weight: ['400', '700', '800', '900'],
   style: ['normal', 'italic'],
+  subsets: ['latin', 'latin-ext'],
 });
 
 const nunito = Nunito({
   weight: ['200', '300', '400', '500', '600', '700', '800', '900', '1000'],
   style: ['normal', 'italic'],
+  subsets: ['latin', 'latin-ext'],
 });
 
 const options = { next: { revalidate: 30 } };

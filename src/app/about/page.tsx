@@ -5,7 +5,7 @@ import React from 'react';
 const options = { next: { revalidate: 30 } };
 export default async function About() {
   const data: Page[] = await getGeneric('about', options);
-
+  if (!data) return <></>;
   return (
     <div>
       <GenericPage data={data[0]} />

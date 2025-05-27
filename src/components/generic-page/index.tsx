@@ -19,6 +19,8 @@ export const GenericPage = ({ data }: { data: Page }) => {
       },
     },
   };
+
+  if (!data) return <></>;
   return (
     <Wrapper>
       <div className={s.genericPageWrapper}>

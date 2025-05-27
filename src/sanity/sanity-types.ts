@@ -363,6 +363,8 @@ export type DualImageBlock = {
       _ref: string;
       _type: 'reference';
       _weak?: boolean;
+      url: string;
+      alt: string;
       [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
     };
     media?: unknown;
@@ -375,6 +377,8 @@ export type DualImageBlock = {
       _ref: string;
       _type: 'reference';
       _weak?: boolean;
+      url: string;
+      alt: string;
       [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
     };
     media?: unknown;

@@ -42,11 +42,13 @@ export const Header = ({ menu }: { menu: Menu }) => {
 
   useEffect(() => {
     if (menuOpen) {
-      gsap.to(mobileMenuRef.current, { height: 'auto', opacity: 1 });
+      setColour('#534741');
+      gsap.to(mobileMenuRef.current, { opacity: 1, pointerEvents: 'auto' });
       tl.current?.play();
     } else if (!menuOpen) {
-      gsap.to(mobileMenuRef.current, { height: 0, opacity: 0 });
+      setColour('#fff');
       tl.current?.reverse();
+      gsap.to(mobileMenuRef.current, { opacity: 0, pointerEvents: 'none' });
     }
   }, [menuOpen]);
 
@@ -76,35 +78,27 @@ export const Header = ({ menu }: { menu: Menu }) => {
             );
           })}
         </div>
-        {width && width < 1100 && (
-          <>
-            {' '}
-            <div
-              className={s.menuButton}
-              onClick={() => setMenuOpen(!menuOpen)}
-              ref={menuButton}
-            >
-              <span style={{ backgroundColor: colour }} ref={lineOne}></span>
-              <span style={{ backgroundColor: colour }} ref={lineTwo}></span>
-              <span style={{ backgroundColor: colour }} ref={lineThree}></span>
-            </div>
-            <div className={s.menuMobile} ref={mobileMenuRef}>
-              {menu.menu?.map((page, i) => {
-                return (
-                  <Link
-                    href={`/${page.reference?.slug.current}`}
-                    style={{ color: colour }}
-                    key={i}
-                  >
-                    <div className={s.menuItem}>
-                      {page.title || page.reference?.title}
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </>
-        )}
+
+        <>
+          <div
+            className={s.menuButton}
+            onClick={() => setMenuOpen(!menuOpen)}
+            ref={menuButton}
+          >
+            <span style={{ backgroundColor: colour }} ref={lineOne}></span>
+            <span style={{ backgroundColor: colour }} ref={lineTwo}></span>
+            <span style={{ backgroundColor: colour }} ref={lineThree}></span>
+          </div>
+          <div className={s.menuMobile} ref={mobileMenuRef}>
+            {menu.menu?.map((page, i) => {
+              return (
+                <Link href={`/${page.reference?.slug.current}`} key={i}>
+                  {page.title || page.reference?.title}
+                </Link>
+              );
+            })}
+          </div>
+        </>
       </div>
     </header>
   );

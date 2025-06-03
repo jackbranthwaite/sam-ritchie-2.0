@@ -98,7 +98,15 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  gap: 1rem;
+
+  .internalWrapper {
+    transform: translateY(5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
 
   a {
     color: $brown;

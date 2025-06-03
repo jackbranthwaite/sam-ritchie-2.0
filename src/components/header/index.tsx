@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu } from '@/sanity/sanity-types';
 import gsap from 'gsap';
-import { useWindowSize } from '@/utils/useWindowSize';
 
 export const Header = ({ menu }: { menu: Menu }) => {
   const pathname = usePathname();
@@ -17,8 +16,8 @@ export const Header = ({ menu }: { menu: Menu }) => {
   const lineTwo = useRef<HTMLSpanElement | null>(null);
   const lineThree = useRef<HTMLSpanElement | null>(null);
   const menuButton = useRef<HTMLDivElement | null>(null);
+  const internalRef = useRef<HTMLDivElement | null>(null);
   const tl = useRef<GSAPTimeline | null>(null);
-  const { width } = useWindowSize();
 
   useEffect(() => {
     if (pathname === '/') {
@@ -44,10 +43,14 @@ export const Header = ({ menu }: { menu: Menu }) => {
     if (menuOpen) {
       setColour('#534741');
       gsap.to(mobileMenuRef.current, { opacity: 1, pointerEvents: 'auto' });
+      gsap.to(internalRef.current, { opacity: 1, translateY: 0 });
       tl.current?.play();
     } else if (!menuOpen) {
-      setColour('#fff');
+      if (pathname === '/') {
+        setColour('#fff');
+      }
       tl.current?.reverse();
+      gsap.to(internalRef.current, { opacity: 0, translateY: '5rem' });
       gsap.to(mobileMenuRef.current, { opacity: 0, pointerEvents: 'none' });
     }
   }, [menuOpen]);
@@ -90,13 +93,15 @@ export const Header = ({ menu }: { menu: Menu }) => {
             <span style={{ backgroundColor: colour }} ref={lineThree}></span>
           </div>
           <div className={s.menuMobile} ref={mobileMenuRef}>
-            {menu.menu?.map((page, i) => {
-              return (
-                <Link href={`/${page.reference?.slug.current}`} key={i}>
-                  {page.title || page.reference?.title}
-                </Link>
-              );
-            })}
+            <div className={s.internalWrapper} ref={internalRef}>
+              {menu.menu?.map((page, i) => {
+                return (
+                  <Link href={`/${page.reference?.slug.current}`} key={i}>
+                    {page.title || page.reference?.title}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </>
       </div>

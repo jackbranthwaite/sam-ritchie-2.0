@@ -211,3 +211,18 @@ export async function getGeneric(
   );
   return generic;
 }
+export async function getAllWork(
+  slug: string,
+  options: { next: { revalidate: number } }
+) {
+  const work = await client.fetch(
+    groq`*[_type == "workPage"] {
+      title,
+      slug,
+      titleImage {alt, "image": asset->url},
+      workTags
+    }`,
+    { options }
+  );
+  return work;
+}

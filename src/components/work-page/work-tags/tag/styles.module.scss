@@ -1,0 +1,21 @@
+@import '@/styles/config';
+
+.tagWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $brown;
+  border-radius: 20px;
+  padding: 0 10px;
+  font-size: 12px;
+  transition: ease-in-out all 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $green;
+  }
+}
+
+.active {
+  background-color: $green;
+}

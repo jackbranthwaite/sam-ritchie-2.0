@@ -15,6 +15,8 @@ export const Tag = ({
   useEffect(() => {
     if (activeTags.includes(tag)) {
       setIsActive(true);
+    } else {
+      setIsActive(false);
     }
   }, [activeTags]);
   return (

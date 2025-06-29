@@ -1,34 +1,6 @@
 @import '@/styles/config';
 
 .galleryWrapper {
-  height: fit-content;
-  position: relative;
-}
-
-.image {
-  width: 100vw;
-  height: auto;
-}
-.navWrapper {
-  position: absolute;
-  z-index: 9;
-  top: 0;
+  height: 30vw;
   display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  top: 50%;
-  transform: translate(0, -50%);
-  padding: 2rem;
-}
-.navButton {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: ease-in-out all 0.2s;
-  border: 2px solid #fff;
 }

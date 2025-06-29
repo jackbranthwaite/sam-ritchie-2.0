@@ -256,7 +256,76 @@ export async function getSingleWork(
   },
   workTags,
   description,
-  contributors
+  contributors,
+  content[] {
+      
+            _type == "block" => {
+              ...
+            },
+            _type == "FlexibleContentContainer" => {
+              _type,
+              title,
+              contentBlocks[] {
+                _type,
+                _type == "dualImageBlock" => {
+                  leftImage {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  rightImage {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  caption
+                },
+                _type == "singleImageBlock" => {
+                  image {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  caption,
+                  fullWidth
+                },
+                _type == "imageGalleryBlock" => {
+                  imageGallery[] {
+                  image {
+                    asset->{
+                      _id,
+                      url,
+                      metadata {
+                        dimensions
+                      }
+                    },
+                    hotspot,
+                    crop
+                  },
+                  }
+                }
+              }
+            }
+      }
+
 }`,
     { options }
   );

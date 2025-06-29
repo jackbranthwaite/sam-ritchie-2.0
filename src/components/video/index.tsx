@@ -11,7 +11,7 @@ import { Pagination } from 'swiper/modules';
 import Left from '@/assets/chevron-left.svg';
 import Right from '@/assets/chevron-right.svg';
 
-export const VideoGallery = () => {
+export const Video = () => {
   const [selectedVideo, setSelectedVideo] = useState<VimeoEmbed | null>(null);
   const [videos, setVideos] = useState<VimeoEmbed[] | null>(null);
   const [slides, setSlides] = useState(3);

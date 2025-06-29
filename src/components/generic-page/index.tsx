@@ -2,10 +2,16 @@
 
 import React from 'react';
 import s from './styles.module.scss';
-import { DualImageBlock, Page, SingleImageBlock } from '@/sanity/sanity-types';
+import {
+  DualImageBlock,
+  ImageGalleryBlock,
+  Page,
+  SingleImageBlock,
+  VimeoEmbed,
+} from '@/sanity/sanity-types';
 import { PortableText } from 'next-sanity';
 import { Wrapper } from '../wrapper';
-import { FlexibleImageContainer } from '../flexible-image-container';
+import { FlexibleContentContainer } from '../flexible-content-container';
 
 export const GenericPage = ({ data }: { data: Page }) => {
   const portableTextComponents = {
@@ -13,9 +19,13 @@ export const GenericPage = ({ data }: { data: Page }) => {
       flexibleImageContainer: (props: {
         index: number;
         isInline: boolean;
-        value: { imageBlocks: Array<SingleImageBlock | DualImageBlock> };
+        value: {
+          contentBlocks: Array<
+            SingleImageBlock | DualImageBlock | ImageGalleryBlock | VimeoEmbed
+          >;
+        };
       }) => {
-        return <FlexibleImageContainer data={props.value} />;
+        return <FlexibleContentContainer data={props.value} />;
       },
     },
   };

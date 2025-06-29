@@ -5,6 +5,7 @@ import { WorkPage as WorkPageType } from '@/sanity/sanity-types';
 import { Card } from './card';
 import { Wrapper } from '../wrapper';
 import { WorkTags } from './work-tags';
+import { PageHeader } from '../page-header';
 
 export const WorkPage = ({ work }: { work: WorkPageType[] }) => {
   const [activeTags, setActiveTags] = useState<string[]>([]);
@@ -32,7 +33,7 @@ export const WorkPage = ({ work }: { work: WorkPageType[] }) => {
   }, [activeTags]);
   return (
     <Wrapper>
-      <h1 className={s.pageTitle}>Work</h1>
+      <PageHeader title='Work' marginTop={4} />
       <Suspense>
         <WorkTags
           work={work}

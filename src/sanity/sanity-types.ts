@@ -220,6 +220,11 @@ export type SanityImageDimensions = {
   aspectRatio?: number;
 };
 
+export type ImageGalleryBlock = {
+  _type: 'imageGalleryBlock';
+  imageGallery?: Array<{ caption: string; image: { asset: SanityImageAsset } }>;
+};
+
 export type SanityFileAsset = {
   _id: string;
   _type: 'sanity.fileAsset';
@@ -253,15 +258,6 @@ export type Contributor = {
   _type: 'contributor';
   name?: string;
   role?: string;
-};
-
-export type ImageGalleryBlock = {
-  _type: 'imageGalleryBlock';
-  imageGallery?: Array<
-    {
-      _key: string;
-    } & SimpleImageBlock
-  >;
 };
 
 export type SimpleImageBlock = {

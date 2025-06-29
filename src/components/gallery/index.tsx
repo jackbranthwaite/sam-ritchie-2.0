@@ -1,47 +1,25 @@
 'use client';
-
-import React, { useRef } from 'react';
+import React from 'react';
 import s from './styles.module.scss';
-import { SwiperRef } from 'swiper/react';
-import Left from '@/assets/svgs/chevron-left.svg';
-import Right from '@/assets/svgs/chevron-right.svg';
+
 import 'swiper/css';
 import { ImageGalleryBlock } from '@/sanity/sanity-types';
 
 export const Gallery = ({ images }: { images: ImageGalleryBlock }) => {
-  const swiperRef = useRef<SwiperRef | null>(null);
-  console.log(images);
+  if (!images.imageGallery) return <></>;
   return (
     <div className={s.galleryWrapper}>
-      {/* <Swiper loop ref={swiperRef}>
-        {images &&
-          images.imageGallery.map((image, i) => {
-            return (
-              <SwiperSlide key={i}>
-
-                <img
-                  src={`${image?.image}`}
-                  alt={`${image?.alt}`}
-                  className={s.image}
-                />
-              </SwiperSlide>
-            );
-          })}
-      </Swiper> */}
-      <div className={s.navWrapper}>
-        <div
-          className={s.navButton}
-          onClick={() => swiperRef.current?.swiper.slidePrev()}
-        >
-          <Left />
-        </div>
-        <div
-          className={s.navButton}
-          onClick={() => swiperRef.current?.swiper.slideNext()}
-        >
-          <Right />
-        </div>
-      </div>
+      {images.imageGallery.map((image, i) => {
+        return (
+          //  eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={i}
+            className={s.image}
+            src={image.image?.asset.url}
+            alt={image.image.asset.altText || 'Forgot the alt'}
+          />
+        );
+      })}
     </div>
   );
 };

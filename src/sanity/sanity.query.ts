@@ -211,10 +211,7 @@ export async function getGeneric(
   );
   return generic;
 }
-export async function getAllWork(
-  slug: string,
-  options: { next: { revalidate: number } }
-) {
+export async function getAllWork(options: { next: { revalidate: number } }) {
   const work = await client.fetch(
     groq`*[_type == "workPage"] {
       title,
@@ -222,6 +219,45 @@ export async function getAllWork(
       titleImage {alt, "image": asset->url},
       workTags
     }`,
+    { options }
+  );
+  return work;
+}
+
+export async function getSingleWork(
+  slug: string,
+  options: { next: { revalidate: number } }
+) {
+  const work = await client.fetch(
+    groq`*[_type == "workPage" && slug.current == "${slug}"][0] {
+  title,
+  slug,
+  titleImage {
+    asset->{
+      _id,
+      url,
+      originalFilename,
+      size,
+      metadata {
+        dimensions {
+          width,
+          height,
+          aspectRatio
+        },
+        lqip,
+        hasAlpha,
+        isOpaque,
+      }
+    },
+    alt,
+    caption,
+    hotspot,
+    crop
+  },
+  workTags,
+  description,
+  contributors
+}`,
     { options }
   );
   return work;

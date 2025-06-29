@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import s from './styles.module.scss';
 import { WorkPage as WorkPageType } from '@/sanity/sanity-types';
 import { Card } from './card';
@@ -33,11 +33,13 @@ export const WorkPage = ({ work }: { work: WorkPageType[] }) => {
   return (
     <Wrapper>
       <h1 className={s.pageTitle}>Work</h1>
-      <WorkTags
-        work={work}
-        activeTags={activeTags}
-        setActiveTags={(a) => setActiveTags(a)}
-      />
+      <Suspense>
+        <WorkTags
+          work={work}
+          activeTags={activeTags}
+          setActiveTags={(a) => setActiveTags(a)}
+        />
+      </Suspense>
       <div className={s.workPageWrapper}>
         {filteredProjects.map((item, i) => {
           return <Card key={i} data={item} />;

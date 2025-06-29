@@ -1,10 +1,11 @@
 import React from 'react';
 import s from './styles.module.scss';
 import { WorkPage } from '@/sanity/sanity-types';
+import Link from 'next/link';
 
 export const Card = ({ data }: { data: WorkPage }) => {
   return (
-    <div className={s.workCardWrapper}>
+    <Link className={s.workCardWrapper} href={`/work/${data.slug?.current}`}>
       <div
         className={s.image}
         style={{ backgroundImage: `url(${data.titleImage?.image})` }}
@@ -21,6 +22,6 @@ export const Card = ({ data }: { data: WorkPage }) => {
         </div>
       </div>
       <h3 className={s.title}>{data.title}</h3>
-    </div>
+    </Link>
   );
 };

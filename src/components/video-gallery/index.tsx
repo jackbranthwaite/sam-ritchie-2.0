@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import s from './styles.module.scss';
 import { Wrapper } from '../wrapper';
-import { VideoPage, VimeoEmbed } from '@/sanity/sanity-types';
+import { VimeoEmbed } from '@/sanity/sanity-types';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { GalleryCard } from './gallery-card';
 import 'swiper/css';
@@ -11,13 +11,13 @@ import { Pagination } from 'swiper/modules';
 import Left from '@/assets/chevron-left.svg';
 import Right from '@/assets/chevron-right.svg';
 
-export const VideoGallery = ({ data }: { data: VideoPage }) => {
+export const VideoGallery = () => {
   const [selectedVideo, setSelectedVideo] = useState<VimeoEmbed | null>(null);
   const [videos, setVideos] = useState<VimeoEmbed[] | null>(null);
   const [slides, setSlides] = useState(3);
   const { width } = useWindowSize();
   const swiperRef = useRef<SwiperRef | null>(null);
-
+  setVideos([]);
   useEffect(() => {
     if (width && width < 590) {
       setSlides(1);
@@ -28,14 +28,14 @@ export const VideoGallery = ({ data }: { data: VideoPage }) => {
     }
   }, [width]);
 
-  useEffect(() => {
-    if (data.videoGallery) {
-      setVideos(data.videoGallery);
-    }
-    if (data.videoGallery) {
-      setSelectedVideo(data.videoGallery[0]);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (data.videoGallery) {
+  //     setVideos(data.videoGallery);
+  //   }
+  //   if (data.videoGallery) {
+  //     setSelectedVideo(data.videoGallery[0]);
+  //   }
+  // }, []);
 
   if (!selectedVideo) return <>loading</>;
   return (

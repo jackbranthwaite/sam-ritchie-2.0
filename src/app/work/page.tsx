@@ -5,7 +5,7 @@ import React from 'react';
 
 const options = { next: { revalidate: 30 } };
 export default async function Work() {
-  const work: WorkPageType[] = await getAllWork('contact', options);
+  const work: WorkPageType[] = await getAllWork(options);
   return (
     <div>
       <WorkPage work={work} />

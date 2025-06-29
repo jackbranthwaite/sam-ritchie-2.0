@@ -1417,6 +1417,11 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.11.0.tgz#75dce8e972f90bba488e2b0cc677fb233aa357ab"
   integrity sha512-zxnHvoMQVqewTJr/W4pKjF0bMGiKJv1WX7bSrkl46Hg0QjESbzBROWK0Wg4RphzSOS5Jiy7eFimmM3UgMrMZbQ==
 
+"@sanity/asset-utils@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@sanity/asset-utils/-/asset-utils-2.2.1.tgz#aab6b03464a55d7e23f4578bd2b38a934941fe1c"
+  integrity sha512-dBsZWH5X6ANcvclFRnQT9Y+NNvoWTJZIMKR5HT6hzoRpRb48p7+vWn+wi1V1wPvqgZg2ScsOQQcGXWXskbPbQQ==
+
 "@sanity/client@^6.22.4":
   version "6.29.1"
   resolved "https://registry.yarnpkg.com/@sanity/client/-/client-6.29.1.tgz#a40e6be06481b7291d9dc0115ef34809bb5befe3"
@@ -1430,6 +1435,16 @@
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/@sanity/client/-/client-7.3.0.tgz#7c19bc54a5af4ec578953833acfdb973691ec2cf"
   integrity sha512-VmzlvGwvWRNxEqAYHNDdvB6u0460C38fPJSHUaIcdBCTBWKMeCgIE8QI1w4PxO0PiYuWgERexRS2OrF+OYh3tQ==
+  dependencies:
+    "@sanity/eventsource" "^5.0.2"
+    get-it "^8.6.9"
+    nanoid "^3.3.11"
+    rxjs "^7.0.0"
+
+"@sanity/client@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-7.6.0.tgz#f8587c5cd50264a77b23adbb348b146c343c9e05"
+  integrity sha512-bNgqWkKzzbAh2qDKHK0IYgR+7TaRsmk6rCpeX+kwIJ6J8ot8ZnZxzRgwfPmBztOQu8YfahQ6t90giT4uVhQNEg==
   dependencies:
     "@sanity/eventsource" "^5.0.2"
     get-it "^8.6.9"
@@ -1515,6 +1530,11 @@
     lodash "^4.17.21"
     react-compiler-runtime "19.1.0-rc.1"
 
+"@sanity/media-library-types@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@sanity/media-library-types/-/media-library-types-1.0.0.tgz#7c62441b09ac497cef015807cb4acb7a84528a21"
+  integrity sha512-RwBou7SybMbHkSeCn+3L/hbaFP77at3BesP67o8D8RrFiOgHX/h4ibw4yEauC1s09U9BE1MPq9K7ji+0XU57GA==
+
 "@sanity/mutate@0.11.0-canary.4":
   version "0.11.0-canary.4"
   resolved "https://registry.yarnpkg.com/@sanity/mutate/-/mutate-0.11.0-canary.4.tgz#d6cf5da86fded6d5ee53b7dc58c3f517d30ad83b"
@@ -1571,6 +1591,14 @@
   integrity sha512-S+B4I6QMFUYyp/xS7kOMW03eM90BmcaBNaFB5zbtuKJJvl38RdF6I+cgU/H8joChNtZ0/GrNcmxv5K1gwdXiww==
   dependencies:
     "@sanity/uuid" "3.0.2"
+
+"@sanity/types@^3.95.0":
+  version "3.95.0"
+  resolved "https://registry.yarnpkg.com/@sanity/types/-/types-3.95.0.tgz#eb4f812371573cdd06ef6e7b205d497a40965467"
+  integrity sha512-LIzlQWzJwol/4ybOkugtUJOc4nFoTrkttWpWbvWVufhavsk8XzjAREXbCcxyuWsAZhWchAgweEmAH3taL/yuhw==
+  dependencies:
+    "@sanity/client" "^7.6.0"
+    "@sanity/media-library-types" "^1.0.0"
 
 "@sanity/ui@^2.15.14":
   version "2.15.14"

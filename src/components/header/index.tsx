@@ -20,7 +20,7 @@ export const Header = ({ menu }: { menu: Menu }) => {
   const tl = useRef<GSAPTimeline | null>(null);
 
   useEffect(() => {
-    if (pathname === '/') {
+    if (pathname === '/' || pathname.includes('work/')) {
       setColour('#ffff');
     } else {
       setColour('#534741');
@@ -46,7 +46,7 @@ export const Header = ({ menu }: { menu: Menu }) => {
       gsap.to(internalRef.current, { opacity: 1, translateY: 0 });
       tl.current?.play();
     } else if (!menuOpen) {
-      if (pathname === '/') {
+      if (pathname === '/' || pathname.includes('work/')) {
         setColour('#fff');
       }
       tl.current?.reverse();

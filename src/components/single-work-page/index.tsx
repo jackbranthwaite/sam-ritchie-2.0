@@ -37,13 +37,13 @@ export const SingleWorkPage = ({ data }: { data: WorkPage }) => {
       <Wrapper>
         <PageHeader title={data.title || ''} />
         <HeaderContent data={data} />
+        {data.content && (
+          <PortableText
+            value={data.content}
+            components={portableTextComponents}
+          />
+        )}
       </Wrapper>
-      {data.content && (
-        <PortableText
-          value={data.content}
-          components={portableTextComponents}
-        />
-      )}
     </div>
   );
 };

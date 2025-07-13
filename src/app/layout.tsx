@@ -39,6 +39,7 @@ export default async function RootLayout({
         <Header menu={menu[0]} />
         {children}
         <Footer />
+        <div id='overlay-root'></div>
       </body>
     </html>
   );

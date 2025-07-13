@@ -1,26 +1,45 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './styles.module.scss';
-
 import 'swiper/css';
-import { ImageGalleryBlock } from '@/sanity/sanity-types';
+import { ImageGalleryBlock, SanityImageAsset } from '@/sanity/sanity-types';
 import Image from 'next/image';
+import { Overlay } from '../overlay';
 
 export const Gallery = ({ images }: { images: ImageGalleryBlock }) => {
-  if (!images.imageGallery) return <></>;
+  const [mainImage, setMainImage] = useState<{
+    caption: string;
+    image: {
+      asset: SanityImageAsset;
+    };
+  } | null>(null);
+  const [galleryOpen, setIsGalleryOpen] = useState(false);
+
+  useEffect(() => {
+    if (images?.imageGallery?.length) {
+      setMainImage(images.imageGallery[0]);
+    }
+  }, [images]);
+
+  const openGallery = (index: number) => {
+    setIsGalleryOpen(true);
+    console.log(index);
+  };
+
+  if (mainImage === null) return <></>;
   return (
     <div className={s.galleryWrapper}>
       <Image
         className={s.mainImage}
-        src={images.imageGallery[0].image.asset.url || ''}
-        alt={images.imageGallery[0].image.asset.altText || ''}
-        width={images.imageGallery[0].image.asset.metadata?.dimensions?.width}
-        height={images.imageGallery[0].image.asset.metadata?.dimensions?.height}
-        blurDataURL={images.imageGallery[0].image.asset.metadata?.blurHash}
+        src={mainImage.image.asset.url || ''}
+        alt={mainImage.image.asset.altText || ''}
+        width={mainImage.image.asset.metadata?.dimensions?.width}
+        height={mainImage.image.asset.metadata?.dimensions?.height}
+        blurDataURL={mainImage.image.asset.metadata?.blurHash}
       />
       <div className={s.galleryStripWrapper}>
         <div className={s.galleryStrip}>
-          {images.imageGallery.map((item, i) => {
+          {images?.imageGallery?.map((item, i) => {
             return (
               <Image
                 key={i}
@@ -30,11 +49,15 @@ export const Gallery = ({ images }: { images: ImageGalleryBlock }) => {
                 width={item.image.asset.metadata?.dimensions?.width}
                 height={item.image.asset.metadata?.dimensions?.height}
                 blurDataURL={item.image.asset.metadata?.blurHash}
+                onClick={() => openGallery(i)}
               />
             );
           })}
         </div>
       </div>
+      <Overlay isOpen={galleryOpen} setIsOpen={() => setIsGalleryOpen(false)}>
+        <div className={s.gallery}></div>
+      </Overlay>
     </div>
   );
 };

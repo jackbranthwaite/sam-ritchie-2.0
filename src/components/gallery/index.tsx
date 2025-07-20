@@ -5,6 +5,7 @@ import 'swiper/css';
 import { ImageGalleryBlock, SanityImageAsset } from '@/sanity/sanity-types';
 import Image from 'next/image';
 import { Popup } from './popup';
+import { Spacer } from '../spacer';
 
 export const Gallery = ({ images }: { images: ImageGalleryBlock }) => {
   const [mainImage, setMainImage] = useState<{
@@ -40,6 +41,7 @@ export const Gallery = ({ images }: { images: ImageGalleryBlock }) => {
   if (mainImage === null) return <></>;
   return (
     <div className={s.galleryWrapper}>
+      <Spacer />
       <Image
         className={s.mainImage}
         src={mainImage.image.asset.url || ''}
@@ -52,17 +54,16 @@ export const Gallery = ({ images }: { images: ImageGalleryBlock }) => {
         <div className={s.galleryStrip}>
           {images?.imageGallery?.map((item, i) => {
             return (
-              <div className={s.imageWrapper} key={i}>
-                <Image
-                  src={item.image.asset.url || ''}
-                  alt={item.image.asset.altText || ''}
-                  className={s.minorImage}
-                  width={item.image.asset.metadata?.dimensions?.width}
-                  height={item.image.asset.metadata?.dimensions?.height}
-                  blurDataURL={item.image.asset.metadata?.blurHash}
-                  onClick={() => openGallery(i)}
-                />
-              </div>
+              <Image
+                key={i}
+                src={item.image.asset.url || ''}
+                alt={item.image.asset.altText || ''}
+                className={s.minorImage}
+                width={item.image.asset.metadata?.dimensions?.width}
+                height={item.image.asset.metadata?.dimensions?.height}
+                blurDataURL={item.image.asset.metadata?.blurHash}
+                onClick={() => openGallery(i)}
+              />
             );
           })}
         </div>
@@ -72,6 +73,7 @@ export const Gallery = ({ images }: { images: ImageGalleryBlock }) => {
         isOpen={isOpen}
         setIsOpen={() => setIsOpen(!isOpen)}
       />
+      <Spacer />
     </div>
   );
 };

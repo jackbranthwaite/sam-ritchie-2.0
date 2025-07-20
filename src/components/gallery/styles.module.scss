@@ -16,17 +16,24 @@
   width: 100%;
   height: 150px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 .galleryStrip {
+  border: 2px solid $brown;
+  border-radius: 8px;
   display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  gap: 1rem;
+  overflow: scroll;
+  width: fit-content;
+  height: fit-content;
+}
+
+.minorImage {
+  height: 100px;
+  width: auto;
   cursor: pointer;
 
-  .minorImage {
-    height: 100%;
-    width: auto;
+  @include mobile-l {
+    height: 75px;
   }
 }

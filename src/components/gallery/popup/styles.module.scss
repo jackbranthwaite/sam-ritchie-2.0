@@ -10,6 +10,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+}
+
+.closeIcon {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
 }
 
 .contentContainer {
@@ -20,17 +33,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
 }
-
+.swiperWrapper {
+  display: flex;
+  align-items: center;
+}
 .galleryImage {
   max-height: 70vh;
   height: 100%;
   width: auto;
+  max-width: 85vw;
 }
 
 .swiperSlide {
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttonsWrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 100;
+  padding: 0 1rem;
+}
+.leftButton,
+.rightButton {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

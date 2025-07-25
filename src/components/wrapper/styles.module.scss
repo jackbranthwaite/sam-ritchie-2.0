@@ -1,4 +1,4 @@
-@import '@/styles/config';
+@import "@/styles/config";
 
 .wrapper {
   padding: 1.5rem 3rem;
@@ -9,4 +9,14 @@
   @include mobile-l {
     padding: 1.5rem 1.5rem;
   }
+}
+
+.top {
+  padding-top: 5rem;
+}
+
+.centre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

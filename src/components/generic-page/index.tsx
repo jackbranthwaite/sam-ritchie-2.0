@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React from 'react';
-import s from './styles.module.scss';
+import React from "react";
+import s from "./styles.module.scss";
 import {
   DualImageBlock,
   ImageGalleryBlock,
   Page,
   SingleImageBlock,
-  VimeoEmbed,
-} from '@/sanity/sanity-types';
-import { PortableText } from 'next-sanity';
-import { Wrapper } from '../wrapper';
-import { FlexibleContentContainer } from '../flexible-content-container';
+  VimeoEmbed
+} from "@/sanity/sanity-types";
+import { PortableText } from "next-sanity";
+import { Wrapper } from "../wrapper";
+import { FlexibleContentContainer } from "../flexible-content-container";
 
 export const GenericPage = ({ data }: { data: Page }) => {
   const portableTextComponents = {
@@ -26,13 +26,13 @@ export const GenericPage = ({ data }: { data: Page }) => {
         };
       }) => {
         return <FlexibleContentContainer data={props.value} />;
-      },
-    },
+      }
+    }
   };
 
   if (!data) return <></>;
   return (
-    <Wrapper>
+    <Wrapper paddingTop centre>
       <div className={s.genericPageWrapper}>
         {data.content && (
           <PortableText

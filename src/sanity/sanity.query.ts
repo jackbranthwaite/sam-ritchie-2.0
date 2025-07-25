@@ -1,6 +1,6 @@
-import { groq } from 'next-sanity';
-import { client } from './client';
-import { processVimeoUrl } from '@/utils/vimeoHelpers';
+import { groq } from "next-sanity";
+import { client } from "./client";
+import { processVimeoUrl } from "@/utils/vimeoHelpers";
 
 export async function getSingleCategory(
   slug: string,
@@ -118,9 +118,9 @@ export async function getSingleVideos(
       ...processVimeoUrl(video.url, {
         autoplay: false,
         muted: true,
-        loop: true,
-      }),
-    })),
+        loop: true
+      })
+    }))
   };
 }
 
@@ -230,103 +230,106 @@ export async function getSingleWork(
 ) {
   const work = await client.fetch(
     groq`*[_type == "workPage" && slug.current == "${slug}"][0] {
-  title,
-  slug,
-  titleImage {
-    asset->{
-      _id,
-      url,
-      originalFilename,
-      size,
-      metadata {
-        dimensions {
-          width,
-          height,
-          aspectRatio
-        },
-        lqip,
-        hasAlpha,
-        isOpaque,
-      }
+    title,
+    slug,
+    titleImage {
+      asset-> {
+        _id,
+        url,
+        originalFilename,
+        size,
+        metadata {
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          },
+          lqip,
+          hasAlpha,
+          isOpaque
+        }
+      },
+      alt,
+      caption,
+      hotspot,
+      crop
     },
-    alt,
-    caption,
-    hotspot,
-    crop
-  },
-  workTags,
-  description,
-  contributors,
-  content[] {
-      
-            _type == "block" => {
-              ...
-            },
-            _type == "FlexibleContentContainer" => {
-              _type,
-              title,
-              contentBlocks[] {
-                _type,
-                _type == "dualImageBlock" => {
-                  leftImage {
-                    asset->{
-                      _id,
-                      url,
-                      metadata {
-                        dimensions
-                      }
-                    },
-                    hotspot,
-                    crop
-                  },
-                  rightImage {
-                    asset->{
-                      _id,
-                      url,
-                      metadata {
-                        dimensions
-                      }
-                    },
-                    hotspot,
-                    crop
-                  },
-                  caption
-                },
-                _type == "singleImageBlock" => {
-                  image {
-                    asset->{
-                      _id,
-                      url,
-                      metadata {
-                        dimensions
-                      }
-                    },
-                    hotspot,
-                    crop
-                  },
-                  caption,
-                  fullWidth
-                },
-                _type == "imageGalleryBlock" => {
-                  imageGallery[] {
-                  image {
-                    asset->{
-                      _id,
-                      url,
-                      metadata {
-                        dimensions
-                      }
-                    },
-                    hotspot,
-                    crop
-                  },
-                  }
+    workTags,
+    description,
+    contributors,
+    content[] {
+      _type == "block" => {
+        ...
+      },
+      _type == "FlexibleContentContainer" => {
+        _type,
+        title,
+        contentBlocks[] {
+          _type,
+          _type == "dualImageBlock" => {
+            leftImage {
+              asset-> {
+                _id,
+                url,
+                metadata {
+                  dimensions
                 }
+              },
+              hotspot,
+              crop
+            },
+            rightImage {
+              asset-> {
+                _id,
+                url,
+                metadata {
+                  dimensions
+                }
+              },
+              hotspot,
+              crop
+            },
+            caption
+          },
+          _type == "singleImageBlock" => {
+            image {
+              asset-> {
+                _id,
+                url,
+                metadata {
+                  dimensions
+                }
+              },
+              hotspot,
+              crop
+            },
+            caption,
+            fullWidth
+          },
+          _type == "imageGalleryBlock" => {
+            imageGallery[] {
+              image {
+                asset-> {
+                  _id,
+                  url,
+                  metadata {
+                    dimensions
+                  }
+                },
+                hotspot,
+                crop
               }
             }
+          },
+          _type == "vimeoEmbed" => {
+            url,
+            description,
+            title
+          }
+        }
       }
-
-}`,
+    }
+  }`,
     { options }
   );
   return work;

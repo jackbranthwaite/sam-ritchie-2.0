@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 import {
   DualImageBlock,
   ImageGalleryBlock,
   SingleImageBlock,
-  VimeoEmbed,
-} from '@/sanity/sanity-types';
-import { DoubleImage } from '../double-image';
-import { FullWidthImage } from '../full-width-image';
-import { Gallery } from '../gallery';
-import { Video } from '../video';
+  VimeoEmbed
+} from "@/sanity/sanity-types";
+import { DoubleImage } from "../double-image";
+import { FullWidthImage } from "../full-width-image";
+import { Gallery } from "../gallery";
+import { Video } from "../video";
 
 export const FlexibleContentContainer = ({
-  data,
+  data
 }: {
   data: {
     contentBlocks: Array<
@@ -23,24 +23,24 @@ export const FlexibleContentContainer = ({
     <>
       {data.contentBlocks.map(
         (
-          image:
+          item:
             | SingleImageBlock
             | DualImageBlock
             | VimeoEmbed
             | ImageGalleryBlock,
           i: number
         ) => {
-          if (image._type === 'dualImageBlock') {
-            return <DoubleImage data={image} key={i} />;
+          if (item._type === "dualImageBlock") {
+            return <DoubleImage data={item} key={i} />;
           }
-          if (image._type === 'singleImageBlock') {
-            return <FullWidthImage data={image} key={i} />;
+          if (item._type === "singleImageBlock") {
+            return <FullWidthImage data={item} key={i} />;
           }
-          if (image._type === 'imageGalleryBlock') {
-            return <Gallery images={image} key={i} />;
+          if (item._type === "imageGalleryBlock") {
+            return <Gallery images={item} key={i} />;
           }
-          if (image._type === 'vimeoEmbed') {
-            return <Video key={i} />;
+          if (item._type === "vimeoEmbed") {
+            return <Video key={i} video={item} />;
           }
         }
       )}

@@ -25,7 +25,7 @@ export function extractVimeoId(url: string) {
     /vimeo\.com\/channels\/.*\/(\d+)/, // Channel: vimeo.com/channels/name/123456
     /vimeo\.com\/groups\/.*\/videos\/(\d+)/, // Group: vimeo.com/groups/name/videos/123456
     /vimeo\.com\/ondemand\/.*\/(\d+)/, // On Demand: vimeo.com/ondemand/name/123456
-    /player\.vimeo\.com\/video\/(\d+)/, // Player: player.vimeo.com/video/123456
+    /player\.vimeo\.com\/video\/(\d+)/ // Player: player.vimeo.com/video/123456
   ];
 
   for (const pattern of patterns) {
@@ -50,16 +50,16 @@ export function createVimeoEmbed(videoId: string, options: Embed) {
     loop,
     title = false,
     byline = false,
-    portrait = false,
+    portrait = false
   } = options;
 
   const params = new URLSearchParams({
-    autoplay: autoplay ? '1' : '0',
-    muted: muted ? '1' : '0',
-    loop: loop ? '1' : '0',
-    title: title ? '1' : '0',
-    byline: byline ? '1' : '0',
-    portrait: portrait ? '1' : '0',
+    autoplay: autoplay ? "1" : "0",
+    muted: muted ? "1" : "0",
+    loop: loop ? "1" : "0",
+    title: title ? "1" : "0",
+    byline: byline ? "1" : "0",
+    portrait: portrait ? "1" : "0"
   });
 
   return `<iframe src="https://player.vimeo.com/video/${videoId}?${params}" width="${width}" height="${height}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
@@ -72,21 +72,21 @@ export function createResponsiveVimeoEmbed(videoId: string, options: Embed) {
   if (!videoId) return null;
 
   const {
-    aspectRatio = '16:9', // or '4:3'
+    aspectRatio = "16:9", // or '4:3'
     autoplay,
     muted,
-    loop,
+    loop
   } = options;
 
-  const paddingTop = aspectRatio === '4:3' ? '75%' : '56.25%';
+  const paddingTop = aspectRatio === "4:3" ? "75%" : "56.25%";
 
   const params = new URLSearchParams({
-    autoplay: autoplay ? '1' : '0',
-    muted: muted ? '1' : '0',
-    loop: loop ? '1' : '0',
-    title: '0',
-    byline: '0',
-    portrait: '0',
+    autoplay: autoplay ? "1" : "0",
+    muted: muted ? "1" : "0",
+    loop: loop ? "1" : "0",
+    title: "0",
+    byline: "0",
+    portrait: "0"
   });
 
   return `
@@ -108,15 +108,15 @@ export function createResponsiveVimeoEmbed(videoId: string, options: Embed) {
  */
 export function getVimeoThumbnail(
   videoId: string,
-  size: 'small' | 'medium' | 'large' = 'large'
+  size: "small" | "medium" | "large" = "large"
 ) {
   if (!videoId) return null;
 
   // Vumbnail service for thumbnails
   const sizes: { small: string; medium: string; large: string } = {
-    small: '200x150',
-    medium: '640x360',
-    large: '1280x720',
+    small: "200x150",
+    medium: "640x360",
+    large: "1280x720"
   };
 
   return `https://vumbnail.com/${videoId}_${sizes[size] || sizes.large}.jpg`;
@@ -134,7 +134,7 @@ export function processVimeoUrl(url: string, embedOptions: Embed) {
       videoId: null,
       embedCode: null,
       responsiveEmbed: null,
-      thumbnail: null,
+      thumbnail: null
     };
   }
 
@@ -144,6 +144,6 @@ export function processVimeoUrl(url: string, embedOptions: Embed) {
     embedCode: createVimeoEmbed(videoId, embedOptions as Embed),
     responsiveEmbed: createResponsiveVimeoEmbed(videoId, embedOptions as Embed),
     thumbnail: getVimeoThumbnail(videoId),
-    playerUrl: `https://player.vimeo.com/video/${videoId}`,
+    playerUrl: `https://player.vimeo.com/video/${videoId}`
   };
 }

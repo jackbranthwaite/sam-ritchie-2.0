@@ -25,7 +25,7 @@ const nunito = Nunito({
   subsets: ['latin', 'latin-ext'],
 });
 
-const options = { next: { revalidate: 30 } };
+const options = { next: { tags: 'menu' } };
 
 export default async function RootLayout({
   children,

@@ -14,9 +14,11 @@ import { Wrapper } from "../wrapper";
 import { FlexibleContentContainer } from "../flexible-content-container";
 
 export const GenericPage = ({ data }: { data: Page }) => {
+  console.log(data);
+
   const portableTextComponents = {
     types: {
-      flexibleImageContainer: (props: {
+      FlexibleContentContainer: (props: {
         index: number;
         isInline: boolean;
         value: {

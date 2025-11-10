@@ -1,4 +1,4 @@
-@import "@/styles/config";
+@import '@/styles/config';
 
 .wrapper {
   padding: 1.5rem 3rem;
@@ -14,6 +14,10 @@
 
 .top {
   padding-top: 4rem;
+}
+
+.height {
+  min-height: auto;
 }
 
 .centre {

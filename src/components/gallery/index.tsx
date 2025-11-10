@@ -1,77 +1,70 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import s from './styles.module.scss';
 import 'swiper/css';
-import { ImageGalleryBlock, SanityImageAsset } from '@/sanity/sanity-types';
+import { ImageGalleryBlock } from '@/sanity/sanity-types';
 import Image from 'next/image';
-import { Popup } from './popup';
+import Left from '@/assets/chevron-left.svg';
+import Right from '@/assets/chevron-right.svg';
+
 import { Spacer } from '../spacer';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper';
+import { SanityImageAsset } from '@/sanity/sanity-types';
+import { Popup } from './popup';
 
 export const Gallery = ({ images }: { images: ImageGalleryBlock }) => {
-  const [mainImage, setMainImage] = useState<{
-    caption: string;
-    image: {
-      asset: SanityImageAsset;
-    };
-  } | null>(null);
-  const [galleryArray, setGalleryArray] =
-    useState<ImageGalleryBlock['imageGallery']>();
+  const swiperRef = useRef<SwiperType | null>(null);
+  const [openImage, setOpenImage] = useState<SanityImageAsset | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (images?.imageGallery?.length) {
-      setMainImage(images.imageGallery[0]);
-    }
-  }, [images]);
-
-  const rotate = (arr: ImageGalleryBlock['imageGallery'], count = 1) => {
-    if (!arr?.length) return [];
-    return [...arr.slice(count, arr.length), ...arr.slice(0, count)];
-  };
-
-  const openGallery = (index: number) => {
-    const newOrder: ImageGalleryBlock['imageGallery'] = rotate(
-      images.imageGallery,
-      index
-    );
-    setGalleryArray(newOrder);
-    setIsOpen(true);
-  };
-
-  if (mainImage === null) return <></>;
   return (
     <div className={s.galleryWrapper}>
       <Spacer />
-      <Image
-        className={s.mainImage}
-        src={mainImage.image.asset.url || ''}
-        alt={mainImage.image.asset.altText || ''}
-        width={mainImage.image.asset.metadata?.dimensions?.width}
-        height={mainImage.image.asset.metadata?.dimensions?.height}
-        blurDataURL={mainImage.image.asset.metadata?.blurHash}
-      />
-      <div className={s.galleryStripWrapper}>
-        <div className={s.galleryStrip}>
-          {images?.imageGallery?.map((item, i) => {
-            return (
+      <Swiper
+        className={s.swiperContainer}
+        style={{ paddingLeft: '3rem' }}
+        spaceBetween={32}
+        slidesPerView={1.6}
+        loop={true}
+        onSwiper={(e) => (swiperRef.current = e)}
+      >
+        {images?.imageGallery?.map((item, i) => {
+          return (
+            <SwiperSlide key={i}>
               <Image
-                key={i}
                 src={item.image.asset.url || ''}
                 alt={item.image.asset.altText || ''}
-                className={s.minorImage}
+                className={s.mainImage}
                 width={item.image.asset.metadata?.dimensions?.width}
                 height={item.image.asset.metadata?.dimensions?.height}
                 blurDataURL={item.image.asset.metadata?.blurHash}
-                onClick={() => openGallery(i)}
+                onClick={() => {
+                  setIsOpen(true);
+                  setOpenImage(item.image.asset);
+                }}
               />
-            );
-          })}
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+      <div className={s.swiperControls}>
+        <div className={s.left} onClick={() => swiperRef.current?.slidePrev()}>
+          <Left color={'#534741'} />
+        </div>
+        <div className={s.right} onClick={() => swiperRef.current?.slideNext()}>
+          <Right color={'#534741'} />
         </div>
       </div>
       <Popup
-        content={galleryArray}
+        content={openImage}
         isOpen={isOpen}
-        setIsOpen={() => setIsOpen(!isOpen)}
+        setIsOpen={() => {
+          setIsOpen(!isOpen);
+          setTimeout(() => {
+            setOpenImage(null);
+          }, 500);
+        }}
       />
       <Spacer />
     </div>

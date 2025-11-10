@@ -1,4 +1,4 @@
-@import "@/styles/config";
+@import '@/styles/config';
 
 .galleryWrapper {
   display: flex;
@@ -19,21 +19,15 @@
   display: flex;
   justify-content: center;
 }
-.galleryStrip {
-  border: 2px solid $brown;
-  border-radius: 8px;
-  display: flex;
-  overflow: scroll;
-  width: fit-content;
-  height: fit-content;
+
+.swiperContainer {
+  width: 100%;
 }
 
-.minorImage {
-  height: 100px;
-  width: auto;
+.swiperControls {
+  display: flex;
+  gap: 4rem;
+  padding-right: 3rem;
+  margin-left: auto;
   cursor: pointer;
-
-  @include mobile-l {
-    height: 75px;
-  }
 }

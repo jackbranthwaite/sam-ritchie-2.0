@@ -3,7 +3,6 @@ import s from './styles.module.scss';
 import Image from 'next/image';
 import { SanityImageAsset } from '@/sanity/sanity-types';
 import gsap from 'gsap';
-import Close from '@/assets/svgs/close.svg';
 
 export const Popup = ({
   content,

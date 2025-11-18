@@ -20,8 +20,13 @@ export const Header = ({ menu }: { menu: Menu }) => {
   const tl = useRef<GSAPTimeline | null>(null);
 
   useEffect(() => {
-    if (pathname === '/' || pathname.includes('work/')) {
+    if (pathname === '/') {
       setColour('#ffff');
+    } else if (pathname.includes('work/')) {
+      setColour('#ffff');
+      const element = document.getElementById('header');
+
+      element?.classList.add(s.difference);
     } else {
       setColour('#534741');
     }
@@ -56,7 +61,7 @@ export const Header = ({ menu }: { menu: Menu }) => {
   }, [menuOpen]);
 
   return (
-    <header className={s.header}>
+    <header className={s.header} id='header'>
       <div className={s.headerWrapper}>
         <div className={s.logo}>
           <Link href={'/'} style={{ color: colour }} className={s.desktopLogo}>

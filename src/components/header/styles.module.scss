@@ -8,6 +8,10 @@
   z-index: 10;
 }
 
+.difference {
+  mix-blend-mode: difference;
+}
+
 .headerWrapper {
   display: flex;
   width: 100%;
@@ -27,6 +31,7 @@
 .logo {
   margin-right: auto;
   z-index: 5;
+
   a {
     font-family: Sansita;
     font-size: 20px;
